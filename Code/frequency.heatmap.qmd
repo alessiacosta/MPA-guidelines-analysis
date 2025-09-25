@@ -1,0 +1,80 @@
+---
+title: "frequency.heatmap.qmd"
+format: html
+editor: visual
+---
+
+# Library
+
+```{r}
+library(readr)
+library(ggplot2)
+library(dplyr)
+library(forcats)
+library(RColorBrewer)
+```
+
+# Loading the data
+
+```{r}
+# Importing the data
+data <- read_csv("../Data/Bipartite3.csv")
+#View(data)
+```
+
+#Preparing the data
+
+```{r}
+# titles are too long, ensuring that they get split into half
+data$Objective <- gsub(" ", "\n", data$Objective)
+
+# Reordering the levels of principles/guidelines and MPA objectives based on the category (i.e., ecological, socioeconomic, and governance)
+data <- data |>  
+  mutate(Guideline_category = factor(Guideline_category, levels = c("Ecological", "Socioeconomic", "Governance")), 
+         Objective_category = factor(Objective_category, levels = c("Ecological", "Socioeconomic", "Governance"))) |> 
+  arrange(Guideline_category, Guideline) |> 
+  mutate(Guideline = factor(Guideline, levels = rev(unique(Guideline)))) |> 
+  arrange(Objective_category, Objective) |>
+  mutate(Objective = factor(Objective, levels = unique(Objective)))
+  
+```
+
+# Matrix heatplot
+
+```{r}
+# setting up levels for MPA objectives
+obj_levels <- levels(data$Objective)
+which(obj_levels == "Marine\nconservation")     # e.g. position 4
+which(obj_levels == "Sustainable\nuse")         # e.g. position 7
+
+#setting levels for guidelines
+guide_levels <- levels(data$Guideline)
+which(guide_levels == "Sustainable-use")     # e.g. position 16
+which(guide_levels == "Tourism sites")      # e.g. position 5
+
+png("../Results/Alt.fig.5.png", width = 4500, height = 4500, res = 500) # saving the plot
+ggplot(data, aes(Objective, Guideline, fill = Frequency)) + 
+  geom_tile() +
+  scale_fill_gradientn(
+  colours = c("grey100", "#C1D5E6", "#8FB1CD", "#3B7CA3", "#2E5E85", "#1F3F5E"),
+  values = scales::rescale(c(0, 1, 2.5, 6, 13, 20))
+) +
+  theme_minimal(base_family = "Times New Roman") +  # change font to times new roman
+  theme(
+    axis.title = element_blank(),
+    axis.text.x = element_text(color = "black", angle = 45, hjust = 0, vjust = 1),
+    axis.title.x.top = element_text(color = "black"),
+    axis.text.x.top = element_text(color = "black"),
+    axis.text.y = element_text(color = "black"),
+    axis.ticks.x.top = element_line(),
+    axis.ticks.y = element_line(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_rect(color = "black", fill = NA, size = 1)
+  ) +
+  scale_x_discrete(position = "top", element_blank()) +
+  geom_vline(xintercept = c(4.5, 8.5), color = "white", size = 3) +
+  geom_hline(yintercept = c(5.5, 17.5), color = "white", size = 3) +
+  geom_hline(yintercept = c(5.5, 17.5), color = "black", size = 0.5) + 
+  geom_vline(xintercept = c(4.5, 8.5), color = "black", size = 0.5)
+dev.off() # closing device
