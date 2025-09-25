@@ -1,0 +1,160 @@
+---
+title: "pa.analysis"
+format: html
+editor: visual
+---
+
+
+# Library
+
+```{r}
+library(readr)
+library(ggplot2)
+library(patchwork)
+library(dplyr)
+library(reshape2)
+library(stringr)
+```
+
+# Datasets
+
+```{r}
+# Ecological datasets 
+bio_conserva <- read_csv("../Data/bio_conserva.csv") # Biodiversity conservation
+marine_conservation <- read_csv("../Data/marine_conservation.csv") # Marine conservation
+Ecological_processes <- read_csv("../Data/Ecological processes.csv") # Assist maintenance of ecological processes
+Climate_change <- read_csv("../Data/Climate change.csv") # Build resilience to climate change
+
+# Socioeconomic datasets
+Livelihoods <- read_csv("../Data/Livelihoods.csv") # Maintain or improve livelihoods
+sustainable_use <- read_csv("../Data/sustainable use.csv") # Ongoing ecologically sustainable use
+cultural_value <- read_csv("../Data/cultural value.csv") # Cultural value
+food_security <- read_csv("../Data/food security.csv") # Ensure food security
+
+# Governance datsets
+community_gov <- read_csv("../Data/community gov.csv") # Community-centered conservation governance
+legal_structures <- read_csv("../Data/legal structures.csv") # Effective legal structures
+```
+
+# Ecological objectives/guidelines
+
+```{r}
+# Function to create heatmap with a common legend
+create_heatmap <- function(data, title, show_legend = FALSE) {   
+  data_wide <- dcast(data, Citation ~ Guideline, value.var = "Presence")   
+  data_melted <- melt(data_wide, id.vars = "Citation", variable.name = "Guideline", value.name = "Presence")  
+
+  citation_presence <- data_melted |>    
+    group_by(Citation) |>   
+    summarise(total_presence = sum(Presence)) |>   
+    arrange(desc(total_presence))   
+
+  data_melted <- data_melted |>  
+    mutate(Citation = factor(Citation, levels = citation_presence$Citation))   
+
+  heatmap <- ggplot(data_melted, aes(x = Citation, y = reorder(Guideline, Presence), fill = factor(Presence))) +  # Swapped x and y
+    geom_tile(color = "white") +   
+    scale_fill_manual(     
+      values = c("0" = "white", "1" = "#3B7CA3"),     
+      labels = c("0" = "Absent", "1" = "Present"),     
+      name = NULL,  # Remove legend title     
+      guide = ifelse(show_legend, "legend", "none")   
+    ) +  
+    #scale_x_discrete(position="top") + # Move x-axis to the top
+    theme_minimal() +   
+    labs(title = title) +  # No axis titles
+    theme(
+      text= element_text(family = "serif"),  # Set font family for all text
+      plot.title = element_text(face = "bold", family="serif", size = 15, margin = margin(t = 20)),
+      axis.text.x = element_text(angle = -90, hjust = 1, size=8), # Element_blank() if want to hide text     
+      axis.ticks.x = element_blank(), #element_line(color = "black", size = 0.5),
+      axis.ticks.y = element_line(color='black', size=0.5),
+      panel.border = element_rect(color = "black", fill = NA, size = 0.5),  # Thin border     
+      panel.background = element_rect(fill = "white"),     
+      axis.title.x = element_blank(),  # Remove x axis title
+      axis.title.y = element_blank() # Remove y axis title
+    ) +   
+    
+    scale_y_discrete(labels = function(x) gsub(" ", "\n", x)) #   this line makes the text wrapped if variable names are too long
+
+  return(heatmap) 
+}
+
+# Create heatmaps for each dataset with their respective titles
+heatmap1 <- create_heatmap(bio_conserva, "A - Biodiversity conservation", show_legend = FALSE)
+heatmap2 <- create_heatmap(Climate_change, "B - Building resilience to climate change", show_legend = FALSE)
+heatmap3 <- create_heatmap(Ecological_processes, "C - Maintenance of ecological processes", show_legend = FALSE)
+heatmap4 <- create_heatmap(marine_conservation, "D - Marine conservation", show_legend = TRUE)  # Only the last one has the legend
+
+# Combine the heatmaps into one figure
+combined_plot <- (heatmap1 + heatmap2) / (heatmap3 + heatmap4) +   
+  plot_layout(guides = 'collect') +  # Collects all legends into one   
+  plot_annotation(     
+    theme = theme(plot.title = element_text(face = "bold", family ="serif",  size = 15, margin = margin(b = 20)))  # Title of the combined plot
+  )  
+
+# Export the combined plot to a PNG file
+png("../Results/Fig2.png", width = 3100, height = 2800, res = 300)
+print(combined_plot)  # Print the combined plot to the PNG device
+dev.off()  # Close the PNG device
+```
+
+# Socioeconomic objectives/guidelines
+
+```{r}
+# Function to create heatmap with a common legend
+create_heatmap <- function(data, title, show_legend = FALSE) {
+  data_wide <- dcast(data, Citation ~ Guideline, value.var = "Presence")
+  data_melted <- melt(data_wide, id.vars = "Citation", variable.name = "Guideline", value.name = "Presence")
+
+  citation_presence <- data_melted |> 
+    group_by(Citation) |> 
+    summarise(total_presence = sum(Presence)) |> 
+    arrange(desc(total_presence))
+
+  data_melted <- data_melted |> 
+    mutate(Citation = factor(Citation, levels = citation_presence$Citation))
+
+  heatmap <- ggplot(data_melted, aes(x = Citation, y = reorder(Guideline, Presence), fill = factor(Presence))) +
+    geom_tile(color = "white") +
+    scale_fill_manual(
+      values = c("0" = "white", "1" = "#3B7CA3"),
+      labels = c("0" = "Absent", "1" = "Present"),
+      name = NULL,  # Remove legend title
+      guide = ifelse(show_legend, "legend", "none")
+    ) +
+    theme_minimal() +
+    labs(title = title) +
+    theme(
+      text = element_text(family = "serif"),  # Set font family for all text
+      plot.title = element_text(face = "bold", size = 15, margin = margin(t = 20)),  # Move title down
+      axis.text.x = element_text(angle = -90, hjust = 1, size=8),
+      axis.ticks.x =  element_blank(), #element_line(color = "black", size = 0.5),
+      panel.border = element_rect(color = "black", fill = NA, size = 0.5),  # Thin border
+      panel.background = element_rect(fill = "white"),  # Optional: Set background color
+      axis.title = element_blank()
+    ) +
+    scale_y_discrete(labels = function(x) gsub(" ", "\n", x))
+    #scale_y_discrete(limits = rev(levels(data_melted$Citation)))  # Reverse y-axis to have highest presence at the top
+  
+  return(heatmap)
+}
+
+# Create heatmaps for each dataset
+heatmap1 <- create_heatmap(Livelihoods, "A - Maintain or improve livelihoods", show_legend = FALSE)
+heatmap2 <- create_heatmap(sustainable_use, "B - Ongoing ecologically sustainable use", show_legend = FALSE)
+heatmap3 <- create_heatmap(food_security, "C - Ensure food security", show_legend = FALSE)
+heatmap4 <- create_heatmap(cultural_value, "D - Cultural value", show_legend = TRUE)  # Only the last one has the legend
+
+# Combine the heatmaps into one figure
+combined_plot <- (heatmap1 + heatmap2)/(heatmap3 + heatmap4) +
+  plot_layout(guides = 'collect') +  # Collects all legends into one
+  plot_annotation(
+    theme = theme(plot.title = element_text(face = "bold", size = 15, margin = margin(b = 20)))  # Title of the combined plot
+  )
+
+# Export the combined plot to a PNG file
+png("../Results/Fig3.png", width = 3100, height = 2800, res = 300)
+print(combined_plot)  # Print the combined plot to the PNG device
+dev.off()  # Close the PNG device
+```
