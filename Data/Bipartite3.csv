@@ -1,0 +1,261 @@
+﻿Objective_category,Objective,Guideline_category,Guideline,Frequency
+Ecological,Ecological processes,Ecological,Comprehensiveness,11
+Ecological,Ecological processes,Ecological,Adequacy,12
+Ecological,Ecological processes,Ecological,Representativeness,8
+Ecological,Ecological processes,Ecological,Precautionary principle,3
+Ecological,Ecological processes,Ecological,Ecological importance,10
+Ecological,Ecological processes,Ecological,Connectivity,12
+Ecological,Ecological processes,Ecological,Sustainable-use,6
+Ecological,Ecological processes,Ecological,Ecosystem services,1
+Ecological,Ecological processes,Ecological,International borders,0
+Ecological,Biodiversity conservation,Ecological,Comprehensiveness,19
+Ecological,Biodiversity conservation,Ecological,Adequacy,24
+Ecological,Biodiversity conservation,Ecological,Representativeness,18
+Ecological,Biodiversity conservation,Ecological,Precautionary principle,6
+Ecological,Biodiversity conservation,Ecological,Ecological importance,18
+Ecological,Biodiversity conservation,Ecological,Connectivity,20
+Ecological,Biodiversity conservation,Ecological,Sustainable-use,13
+Ecological,Biodiversity conservation,Ecological,Ecosystem services,3
+Ecological,Biodiversity conservation,Ecological,International borders,0
+Ecological,Climate change,Ecological,Comprehensiveness,11
+Ecological,Climate change,Ecological,Adequacy,12
+Ecological,Climate change,Ecological,Representativeness,3
+Ecological,Climate change,Ecological,Precautionary principle,2
+Ecological,Climate change,Ecological,Ecological importance,13
+Ecological,Climate change,Ecological,Connectivity,13
+Ecological,Climate change,Ecological,Sustainable-use,8
+Ecological,Climate change,Ecological,Ecosystem services,1
+Ecological,Climate change,Ecological,International borders,1
+Governance,Community governance,Ecological,Comprehensiveness,2
+Governance,Community governance,Ecological,Adequacy,2
+Governance,Community governance,Ecological,Representativeness,0
+Governance,Community governance,Ecological,Precautionary principle,0
+Governance,Community governance,Ecological,Ecological importance,2
+Governance,Community governance,Ecological,Connectivity,2
+Governance,Community governance,Ecological,Sustainable-use,2
+Governance,Community governance,Ecological,Ecosystem services,0
+Governance,Community governance,Ecological,International borders,0
+Socioeconomic,Cultural value,Ecological,Comprehensiveness,3
+Socioeconomic,Cultural value,Ecological,Adequacy,3
+Socioeconomic,Cultural value,Ecological,Representativeness,3
+Socioeconomic,Cultural value,Ecological,Precautionary principle,0
+Socioeconomic,Cultural value,Ecological,Ecological importance,3
+Socioeconomic,Cultural value,Ecological,Connectivity,3
+Socioeconomic,Cultural value,Ecological,Sustainable-use,3
+Socioeconomic,Cultural value,Ecological,Ecosystem services,1
+Socioeconomic,Cultural value,Ecological,International borders,0
+Socioeconomic,Livelihoods,Ecological,Comprehensiveness,4
+Socioeconomic,Livelihoods,Ecological,Adequacy,4
+Socioeconomic,Livelihoods,Ecological,Representativeness,1
+Socioeconomic,Livelihoods,Ecological,Precautionary principle,0
+Socioeconomic,Livelihoods,Ecological,Ecological importance,4
+Socioeconomic,Livelihoods,Ecological,Connectivity,4
+Socioeconomic,Livelihoods,Ecological,Sustainable-use,4
+Socioeconomic,Livelihoods,Ecological,Ecosystem services,1
+Socioeconomic,Livelihoods,Ecological,International borders,0
+Ecological,Marine conservation,Ecological,Comprehensiveness,20
+Ecological,Marine conservation,Ecological,Adequacy,31
+Ecological,Marine conservation,Ecological,Representativeness,13
+Ecological,Marine conservation,Ecological,Precautionary principle,9
+Ecological,Marine conservation,Ecological,Ecological importance,29
+Ecological,Marine conservation,Ecological,Connectivity,22
+Ecological,Marine conservation,Ecological,Sustainable-use,16
+Ecological,Marine conservation,Ecological,Ecosystem services,2
+Ecological,Marine conservation,Ecological,International borders,0
+Socioeconomic,Sustainable use,Ecological,Comprehensiveness,11
+Socioeconomic,Sustainable use,Ecological,Adequacy,15
+Socioeconomic,Sustainable use,Ecological,Representativeness,5
+Socioeconomic,Sustainable use,Ecological,Precautionary principle,1
+Socioeconomic,Sustainable use,Ecological,Ecological importance,9
+Socioeconomic,Sustainable use,Ecological,Connectivity,16
+Socioeconomic,Sustainable use,Ecological,Sustainable-use,12
+Socioeconomic,Sustainable use,Ecological,Ecosystem services,3
+Socioeconomic,Sustainable use,Ecological,International borders,0
+Ecological,Ecological processes,Socioeconomic,Social context,1
+Ecological,Ecological processes,Socioeconomic,Equity,4
+Ecological,Ecological processes,Socioeconomic,Cultural identity,3
+Ecological,Ecological processes,Socioeconomic,Synergies,1
+Ecological,Ecological processes,Socioeconomic,Complementarity,2
+Ecological,Ecological processes,Socioeconomic,Compliance,3
+Ecological,Ecological processes,Socioeconomic,Education,1
+Ecological,Ecological processes,Socioeconomic,Subsistence fisheries,2
+Ecological,Ecological processes,Socioeconomic,Over-exploited species,0
+Ecological,Ecological processes,Socioeconomic,Tourism sites,0
+Ecological,Ecological processes,Socioeconomic,Shipping infrastructure,0
+Ecological,Ecological processes,Socioeconomic,Precautionary approach,0
+Ecological,Biodiversity conservation,Socioeconomic,Social context,2
+Ecological,Biodiversity conservation,Socioeconomic,Equity,3
+Ecological,Biodiversity conservation,Socioeconomic,Cultural identity,1
+Ecological,Biodiversity conservation,Socioeconomic,Synergies,1
+Ecological,Biodiversity conservation,Socioeconomic,Complementarity,2
+Ecological,Biodiversity conservation,Socioeconomic,Compliance,3
+Ecological,Biodiversity conservation,Socioeconomic,Education,1
+Ecological,Biodiversity conservation,Socioeconomic,Subsistence fisheries,0
+Ecological,Biodiversity conservation,Socioeconomic,Over-exploited species,0
+Ecological,Biodiversity conservation,Socioeconomic,Tourism sites,0
+Ecological,Biodiversity conservation,Socioeconomic,Shipping infrastructure,0
+Ecological,Biodiversity conservation,Socioeconomic,Precautionary approach,0
+Ecological,Climate change,Socioeconomic,Social context,1
+Ecological,Climate change,Socioeconomic,Equity,5
+Ecological,Climate change,Socioeconomic,Cultural identity,4
+Ecological,Climate change,Socioeconomic,Synergies,2
+Ecological,Climate change,Socioeconomic,Complementarity,3
+Ecological,Climate change,Socioeconomic,Compliance,3
+Ecological,Climate change,Socioeconomic,Education,2
+Ecological,Climate change,Socioeconomic,Subsistence fisheries,2
+Ecological,Climate change,Socioeconomic,Over-exploited species,0
+Ecological,Climate change,Socioeconomic,Tourism sites,0
+Ecological,Climate change,Socioeconomic,Shipping infrastructure,0
+Ecological,Climate change,Socioeconomic,Precautionary approach,0
+Governance,Community governance,Socioeconomic,Social context,0
+Governance,Community governance,Socioeconomic,Equity,2
+Governance,Community governance,Socioeconomic,Cultural identity,2
+Governance,Community governance,Socioeconomic,Synergies,0
+Governance,Community governance,Socioeconomic,Complementarity,0
+Governance,Community governance,Socioeconomic,Compliance,0
+Governance,Community governance,Socioeconomic,Education,0
+Governance,Community governance,Socioeconomic,Subsistence fisheries,2
+Governance,Community governance,Socioeconomic,Over-exploited species,0
+Governance,Community governance,Socioeconomic,Tourism sites,0
+Governance,Community governance,Socioeconomic,Shipping infrastructure,0
+Governance,Community governance,Socioeconomic,Precautionary approach,0
+Socioeconomic,Cultural value,Socioeconomic,Social context,0
+Socioeconomic,Cultural value,Socioeconomic,Equity,1
+Socioeconomic,Cultural value,Socioeconomic,Cultural identity,1
+Socioeconomic,Cultural value,Socioeconomic,Synergies,0
+Socioeconomic,Cultural value,Socioeconomic,Complementarity,0
+Socioeconomic,Cultural value,Socioeconomic,Compliance,0
+Socioeconomic,Cultural value,Socioeconomic,Education,0
+Socioeconomic,Cultural value,Socioeconomic,Subsistence fisheries,0
+Socioeconomic,Cultural value,Socioeconomic,Over-exploited species,0
+Socioeconomic,Cultural value,Socioeconomic,Tourism sites,0
+Socioeconomic,Cultural value,Socioeconomic,Shipping infrastructure,0
+Socioeconomic,Cultural value,Socioeconomic,Precautionary approach,0
+Socioeconomic,Livelihoods,Socioeconomic,Social context,2
+Socioeconomic,Livelihoods,Socioeconomic,Equity,5
+Socioeconomic,Livelihoods,Socioeconomic,Cultural identity,2
+Socioeconomic,Livelihoods,Socioeconomic,Synergies,0
+Socioeconomic,Livelihoods,Socioeconomic,Complementarity,2
+Socioeconomic,Livelihoods,Socioeconomic,Compliance,2
+Socioeconomic,Livelihoods,Socioeconomic,Education,0
+Socioeconomic,Livelihoods,Socioeconomic,Subsistence fisheries,3
+Socioeconomic,Livelihoods,Socioeconomic,Over-exploited species,1
+Socioeconomic,Livelihoods,Socioeconomic,Tourism sites,0
+Socioeconomic,Livelihoods,Socioeconomic,Shipping infrastructure,0
+Socioeconomic,Livelihoods,Socioeconomic,Precautionary approach,0
+Ecological,Marine conservation,Socioeconomic,Social context,4
+Ecological,Marine conservation,Socioeconomic,Equity,11
+Ecological,Marine conservation,Socioeconomic,Cultural identity,8
+Ecological,Marine conservation,Socioeconomic,Synergies,2
+Ecological,Marine conservation,Socioeconomic,Complementarity,4
+Ecological,Marine conservation,Socioeconomic,Compliance,4
+Ecological,Marine conservation,Socioeconomic,Education,2
+Ecological,Marine conservation,Socioeconomic,Subsistence fisheries,4
+Ecological,Marine conservation,Socioeconomic,Over-exploited species,2
+Ecological,Marine conservation,Socioeconomic,Tourism sites,3
+Ecological,Marine conservation,Socioeconomic,Shipping infrastructure,2
+Ecological,Marine conservation,Socioeconomic,Precautionary approach,0
+Socioeconomic,Sustainable use,Socioeconomic,Social context,6
+Socioeconomic,Sustainable use,Socioeconomic,Equity,12
+Socioeconomic,Sustainable use,Socioeconomic,Cultural identity,9
+Socioeconomic,Sustainable use,Socioeconomic,Synergies,2
+Socioeconomic,Sustainable use,Socioeconomic,Complementarity,4
+Socioeconomic,Sustainable use,Socioeconomic,Compliance,6
+Socioeconomic,Sustainable use,Socioeconomic,Education,3
+Socioeconomic,Sustainable use,Socioeconomic,Subsistence fisheries,4
+Socioeconomic,Sustainable use,Socioeconomic,Over-exploited species,1
+Socioeconomic,Sustainable use,Socioeconomic,Tourism sites,2
+Socioeconomic,Sustainable use,Socioeconomic,Shipping infrastructure,1
+Socioeconomic,Sustainable use,Socioeconomic,Precautionary approach,1
+Ecological,Ecological processes,Governance,Legitimacy,2
+Ecological,Ecological processes,Governance,Adaptive management,0
+Ecological,Ecological processes,Governance,Effective management,2
+Ecological,Ecological processes,Governance,Knowledge integration,0
+Ecological,Ecological processes,Governance,Leadership,0
+Ecological,Climate change,Governance,Legitimacy,2
+Ecological,Climate change,Governance,Adaptive management,1
+Ecological,Climate change,Governance,Effective management,2
+Ecological,Climate change,Governance,Knowledge integration,0
+Ecological,Climate change,Governance,Leadership,0
+Governance,Community governance,Governance,Legitimacy,3
+Governance,Community governance,Governance,Adaptive management,1
+Governance,Community governance,Governance,Effective management,3
+Governance,Community governance,Governance,Knowledge integration,0
+Governance,Community governance,Governance,Leadership,0
+Socioeconomic,Sustainable use,Governance,Legitimacy,4
+Socioeconomic,Sustainable use,Governance,Adaptive management,3
+Socioeconomic,Sustainable use,Governance,Effective management,4
+Socioeconomic,Sustainable use,Governance,Knowledge integration,0
+Socioeconomic,Sustainable use,Governance,Leadership,1
+Socioeconomic,Livelihoods,Governance,Legitimacy,3
+Socioeconomic,Livelihoods,Governance,Adaptive management,1
+Socioeconomic,Livelihoods,Governance,Effective management,3
+Socioeconomic,Livelihoods,Governance,Knowledge integration,0
+Socioeconomic,Livelihoods,Governance,Leadership,1
+Ecological,Marine conservation,Governance,Legitimacy,5
+Ecological,Marine conservation,Governance,Adaptive management,5
+Ecological,Marine conservation,Governance,Effective management,5
+Ecological,Marine conservation,Governance,Knowledge integration,1
+Ecological,Marine conservation,Governance,Leadership,1
+Ecological,Biodiversity conservation,Governance,Legitimacy,3
+Ecological,Biodiversity conservation,Governance,Adaptive management,3
+Ecological,Biodiversity conservation,Governance,Effective management,2
+Ecological,Biodiversity conservation,Governance,Knowledge integration,0
+Ecological,Biodiversity conservation,Governance,Leadership,1
+Governance,Legal structures,Governance,Legitimacy,1
+Governance,Legal structures,Governance,Adaptive management,1
+Governance,Legal structures,Governance,Effective management,1
+Governance,Legal structures,Governance,Knowledge integration,0
+Governance,Legal structures,Governance,Leadership,1
+Socioeconomic,Food security,Ecological,Comprehensiveness,1
+Socioeconomic,Food security,Ecological,Adequacy,1
+Socioeconomic,Food security,Ecological,Representativeness,0
+Socioeconomic,Food security,Ecological,Precautionary principle,0
+Socioeconomic,Food security,Ecological,Ecological importance,1
+Socioeconomic,Food security,Ecological,Connectivity,1
+Socioeconomic,Food security,Ecological,Sustainable-use,1
+Socioeconomic,Food security,Ecological,Ecosystem services,0
+Socioeconomic,Food security,Ecological,International borders,0
+Socioeconomic,Food security,Socioeconomic,Social context,1
+Socioeconomic,Food security,Socioeconomic,Equity,1
+Socioeconomic,Food security,Socioeconomic,Cultural identity,0
+Socioeconomic,Food security,Socioeconomic,Synergies,0
+Socioeconomic,Food security,Socioeconomic,Complementarity,1
+Socioeconomic,Food security,Socioeconomic,Compliance,1
+Socioeconomic,Food security,Socioeconomic,Education,0
+Socioeconomic,Food security,Socioeconomic,Subsistence fisheries,0
+Socioeconomic,Food security,Socioeconomic,Over-exploited species,0
+Socioeconomic,Food security,Socioeconomic,Tourism sites,0
+Socioeconomic,Food security,Socioeconomic,Shipping infrastructure,0
+Socioeconomic,Food security,Socioeconomic,Precautionary approach,0
+Socioeconomic,Cultural value,Governance,Legitimacy,0
+Socioeconomic,Cultural value,Governance,Adaptive management,0
+Socioeconomic,Cultural value,Governance,Effective management,0
+Socioeconomic,Cultural value,Governance,Knowledge integration,0
+Socioeconomic,Cultural value,Governance,Leadership,0
+Socioeconomic,Food security,Governance,Legitimacy,0
+Socioeconomic,Food security,Governance,Adaptive management,0
+Socioeconomic,Food security,Governance,Effective management,0
+Socioeconomic,Food security,Governance,Knowledge integration,0
+Socioeconomic,Food security,Governance,Leadership,0
+Governance,Legal structures,Ecological,Comprehensiveness,0
+Governance,Legal structures,Ecological,Adequacy,0
+Governance,Legal structures,Ecological,Representativeness,0
+Governance,Legal structures,Ecological,Precautionary principle,0
+Governance,Legal structures,Ecological,Ecological importance,0
+Governance,Legal structures,Ecological,Connectivity,0
+Governance,Legal structures,Ecological,Sustainable-use,0
+Governance,Legal structures,Ecological,Ecosystem services,0
+Governance,Legal structures,Ecological,International borders,0
+Governance,Legal structures,Socioeconomic,Social context,0
+Governance,Legal structures,Socioeconomic,Equity,0
+Governance,Legal structures,Socioeconomic,Cultural identity,0
+Governance,Legal structures,Socioeconomic,Synergies,0
+Governance,Legal structures,Socioeconomic,Complementarity,0
+Governance,Legal structures,Socioeconomic,Compliance,0
+Governance,Legal structures,Socioeconomic,Education,0
+Governance,Legal structures,Socioeconomic,Subsistence fisheries,0
+Governance,Legal structures,Socioeconomic,Over-exploited species,0
+Governance,Legal structures,Socioeconomic,Tourism sites,0
+Governance,Legal structures,Socioeconomic,Shipping infrastructure,0
+Governance,Legal structures,Socioeconomic,Precautionary approach,0

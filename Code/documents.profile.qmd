@@ -1,0 +1,483 @@
+---
+title: "documents.profile"
+format: html
+editor: visual
+---
+
+# Library
+
+```{r}
+library(readr)
+library(ggplot2)
+library(grid)
+library(dplyr)
+library(tidyr)
+library(forcats)
+library(reshape2)
+library(patchwork)
+```
+
+# Datasets
+
+```{r}
+# dataset with documents profile
+profile <- read_csv("../Data/profile.csv")
+# dataset percentage for each category for both guidelines and MPA objectives
+fig1 <- read_csv("../Data/figure1.csv")
+# datasets with MPA objectives
+objectives <- read_csv("../Data/objectives.csv")
+```
+
+# Plotting objectives and guidelines over time
+
+```{r}
+# creating a dataset with only year, objectives and guidelines types
+year <- profile |> 
+  select(Paper_ID, Year_published, Objective_type, Guideline_type)
+# setting levels for the objectives and guidelines categories
+year <- year |>  
+ mutate(Objective_type = factor(Objective_type, levels=c("Ecological only", "Socioeconomic only", "Governance only", "Ecological and socioeconomic", "All three")))
+year <- year |> 
+  mutate(Guideline_type= factor(Guideline_type, levels=c("Ecological only", "Socioeconomic only", "Governance only", "Ecological and socioeconomic", "Ecological and governance", "All three")),
+      Decade = case_when(
+      Year_published >= 1980 & Year_published <= 1989 ~ "1980–1989",
+      Year_published >= 1990 & Year_published <= 1999 ~ "1990–1999",
+      Year_published >= 2000 & Year_published <= 2009 ~ "2000–2009",
+      Year_published >= 2010 & Year_published <= 2019 ~ "2010–2019",
+      Year_published >= 2020 & Year_published <= 2024 ~ "2020–2024",
+      TRUE ~ NA_character_),
+      Decade = factor(Decade, levels = c("1980–1989", "1990–1999", "2000–2009", "2010–2019", "2020–2024")))
+# Setting factor levels to ensure correct order in the plot
+# plot the count by year of publication 
+objects <- ggplot(year, aes(x=Decade, fill=Objective_type)) + 
+  geom_bar(show.legend=FALSE) + 
+  scale_fill_manual(values = c("Ecological only" = "#7BAF6A", "Socioeconomic only" = "#F89C4F", "Governance only" = "#3B7CA3", "Ecological and socioeconomic" = "#FDBF2D", "All three" = "#C94D7B")) +
+  theme_minimal(base_family = "Times") + 
+  coord_cartesian(clip = "off") +
+  theme(
+    axis.title = element_blank(),
+    axis.ticks.y = element_line(color = "black"),              # y-axis major ticks in black
+    axis.ticks.x = element_line(color = "black"),              # x-axis major ticks (keep if needed)
+    axis.ticks.length = unit(4, "pt"),                         # make sure ticks are visible
+    panel.border = element_rect(colour = "black", fill=NA, linewidth=0.25), # adds a border around the plot 
+    plot.title = element_text(family = "Times", face = "bold", size = 12, hjust = 0)) + # aligns the title to the left
+  labs(title= "") +
+   annotate("text", x=-Inf, y=Inf, label="A - MPA objectives", hjust=0, vjust=-0.3, size=4, fontface="bold", family='serif')
+# Rename the categories before plotting
+year$Guideline_type <- recode(
+  year$Guideline_type,
+  "Ecological only" = "Ecological only",
+  "Socioeconomic only" = "Socioeconomic only",
+  "Governance only" = "Governance only",
+  "Ecological and socioeconomic" = "Ecological & socioeconomic", 
+  "Ecological and governance" = "Ecological & governance",
+  "All three" = "All three")
+#plotting percentage fo documents for each guideline categoriy
+guides <- ggplot(year, aes(x=Decade, fill=Guideline_type)) + 
+  geom_bar() +
+  scale_fill_manual(
+    name = "Categories",
+    values = c("Ecological only" = "#7BAF6A", "Socioeconomic only" = "#F89C4F", "Governance only" = "#3B7CA3", "Ecological & socioeconomic" = "#FDBF2D", "Ecological & governance" ="#1DA1A1","All three" = "#C94D7B")) +
+  theme_minimal(base_family = "Times") + 
+  coord_cartesian(clip = "off") +
+  theme(
+    axis.title.y = element_blank(),
+    axis.ticks.y = element_line(color = "black"),              # y-axis major ticks in black
+    axis.ticks.x = element_line(color = "black"),              # x-axis major ticks (keep if needed)
+    axis.ticks.length = unit(4, "pt"),                         # make sure ticks are visible
+    panel.border = element_rect(colour = "black", fill=NA, linewidth=0.25), # adds a border around the plot 
+    plot.title = element_text(family = "Times", face = "bold", size = 12, hjust = 0)) + # aligning title to the left
+  labs(x = "Year of publication", 
+       color = "Categories", 
+       title = "") +
+  annotate("text", x=-Inf, y=Inf, label="B - Design guidelines", hjust=0, vjust=-0.3, size=4, fontface="bold", family='serif')
+guides
+
+# Making a vertical annotation for the y axis 
+# Create vertical text grob (rotated 90 degrees)
+vertical_label <- textGrob(
+  "Number of documents", 
+  rot = 90, 
+  gp = gpar(fontsize = 11, 
+            fontfamily = "Times"))
+# Wrap the grob as a patchwork element
+label_panel <- wrap_elements(full = vertical_label)
+# patchwork the plot
+png("../Results/temporaltrend.png", width = 2000, height = 1600, res = 300) # save in png format
+label_panel + objects/guides + plot_layout(guides = "collect") + plot_layout(widths = c(0.02, 1))
+dev.off()
+```
+
+# Plotting different jurisdictional scales
+
+```{r}
+# creating a dataset with only scale and paper ID
+jurisdiction <- profile |> 
+  select(Paper_ID, Scale)
+# setting levels for jurisdictional scales
+jurisdiction <- jurisdiction |> 
+  mutate(Scale = factor(Scale, levels = c("Region", "Country", "State/province",  "Location", "Other")))
+jurisdiction$Scale <- jurisdiction$Scale |> 
+  fct_recode(
+    "Region" = "Region",
+    "Country" = "Country",
+    "State/\nprovince" = "State/province",
+    "Site\nspecific" = "Location",
+    "Other" = "Other"
+  ) |> 
+  fct_relevel(
+    "Region",
+    "Country",
+    "State/\nprovince",
+    "Site\nspecific", 
+    "Other",
+  )
+# calculating the percentage for each category 
+jurisdiction1 <- jurisdiction |> 
+  group_by(Scale) |> 
+  summarise(
+    count = n(),
+    percent = (n() /nrow(jurisdiction)) * 100)
+# bar plot 
+jurisdiction_plot <- ggplot(jurisdiction1, aes(x=Scale, y=percent)) +
+  geom_bar(stat = "identity",  position = "dodge", fill="#7BAF6A") +
+  theme_minimal(base_family = "Times") + 
+  coord_cartesian(clip = "off") +
+  scale_y_continuous(limits = c(0, 65)) +
+  theme(
+    axis.title.y =element_blank(),
+    axis.ticks.y = element_line(color = "black"),              # y-axis major ticks in black
+    axis.ticks.x = element_line(color = "black"),              # x-axis major ticks (keep if needed)
+    axis.ticks.length = unit(4, "pt"),                         # make sure ticks are visible
+    panel.border = element_rect(colour = "black", fill=NA, linewidth=0.25)) + # adds a border around the plot 
+  labs(x = "../Results/Jurisdictional scale") + 
+  annotate("text", x=-Inf, y=Inf, label="B", hjust=1.5, vjust=0.8, size=6, fontface="bold", family='serif')
+jurisdiction_plot
+```
+
+# Plotting different document types
+
+```{r}
+# creatign a dataset with only document type and paper ID
+docu_type <- profile |> 
+  select(Paper_ID, Document_type)
+head(docu_type)
+#setting levels for the documents levels
+docu_type <- docu_type |> 
+  mutate(Document_type = factor(Document_type, levels =c("Journal article", "NGO report", "Government report", "Other report")))
+docu_type$Document_type <- docu_type$Document_type |> 
+  fct_recode(
+    "Journal\narticle" = "Journal article",
+    "NGO\nreport" = "NGO report",
+    "Government\nreport" = "Government report",
+    "Other\nreport" = "Other report"
+  ) |> 
+  fct_relevel(
+    "Journal\narticle",
+    "NGO\nreport",
+    "Government\nreport",
+    "Other\nreport"
+  )
+#calculating the percentage for each document type
+docu_type2 <- docu_type |> 
+  group_by(Document_type) |> 
+  summarise(
+    count = n(),
+    percent = (n() /nrow(docu_type)) * 100)
+#View(docu_type)
+# Bar plot
+docu_type_plot <- ggplot(docu_type2, aes(x=Document_type, y=percent)) + # plotting the percentage for each document type
+  geom_bar(stat = "identity", position = "dodge", fill="#7BAF6A") +
+  guides(fill = guide_legend(title = NULL),
+         x=guide_axis(minor.ticks= TRUE)) +
+  theme_minimal(base_family = "Times") + 
+  coord_cartesian(clip = "off") +
+  theme(
+    axis.title.y = element_blank(),
+    axis.ticks.y = element_line(color = "black"),              # y-axis major ticks in black
+    axis.ticks.x = element_line(color = "black"),              # x-axis major ticks
+    axis.ticks.length = unit(4, "pt"),                         # make sure ticks are visible
+    panel.border = element_rect(colour = "black", fill=NA, linewidth=0.25)) + # adds a border around the plot 
+  labs(x = "Document type") + 
+  annotate("text", x=-Inf, y=Inf, label="A", hjust=1.5, vjust=0.8, size=6, fontface="bold", family='serif')
+docu_type_plot
+```
+
+# Plotting percentage of documents for guidelines and MPA objective categories
+
+```{r}
+# Convert to long format for ggplot
+fig1 <- fig1|>
+  mutate(Category = (levels = c(
+    "Ecological only",
+    "Socioeconomic only",
+    "Governance only",
+    "Ecological & socioeconomic",
+    "Ecological & governance",
+    "All three"
+  )))
+unique(fig1$Category)
+fig1_long <- fig1 |> 
+  pivot_longer(cols = c(`MPA objectives`, `Design guidelines`),
+               names_to = "Variable",
+               values_to = "Percentage")
+# wrapping text
+fig1_long$Category <- fig1_long$Category |> 
+  fct_recode(
+    "Ecological\nonly" = "Ecological only",
+    "Socioeconomic\nonly" = "Socioeconomic only",
+    "Governance\nonly" = "Governance only",
+    "Ecological &\nsocioeconomic" = "Ecological & socioeconomic",
+    "Ecological &\ngovernance" = "Ecological & governance",
+    "All three" = "All three"
+  ) |> 
+  fct_relevel(
+    "Ecological\nonly",
+    "Socioeconomic\nonly",
+    "Governance\nonly",
+    "Ecological &\nsocioeconomic",
+    "Ecological &\ngovernance",
+    "All three"
+  )
+#re-ordering variable to make sure that MPA objectives are plotted first
+fig1_long$Variable <- factor(fig1_long$Variable, levels = c("MPA objectives", "Design guidelines"))
+# Plotting % of records by category and variable
+categories <- ggplot(fig1_long, aes(x = Category, y = Percentage, fill = Variable)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("MPA objectives" = "#FDBF2D", "Design guidelines" = "#3B7CA3")) +
+  guides(fill = guide_legend(title = NULL), 
+         x=guide_axis(minor.ticks= TRUE)) +
+  labs(x = "Categories", 
+       title = "  ") +
+  coord_cartesian(clip = "off") +
+  #scale_y_continuous(breaks = seq(0, 100, by = 10), minor_breaks = NULL) +
+  theme_minimal(base_family = "Times") +
+  theme(axis.text.x = element_text(), 
+        axis.title.y = element_blank(),
+        legend.position = c(0.95, 0.95),        # x, y coordinates (from bottom-left)
+        legend.justification = c("right", "top"), # anchor point of the legend box
+        legend.background = element_rect(fill = "transparent", color = NA), # making the legend background transparent
+        axis.ticks.y = element_line(color = "black"),              # y-axis major ticks in black
+        axis.ticks.x = element_line(color = "black"),              # x-axis major ticks (keep if needed)
+        axis.ticks.length = unit(4, "pt"),                         # make sure ticks are visible
+        panel.border = element_rect(colour = "black", fill=NA, linewidth=0.25)) + # adds a border around the plot 
+  annotate("text", x=-Inf, y=Inf, label="C", hjust=1.5, vjust=0.8, size=6, fontface="bold", family='serif') +
+  annotate("text", x = 4.85, y = 2, label = "0", size = 3)
+categories
+```
+
+## Combining plot from documents profile
+
+```{r}
+# setting up a shared y-axis label
+vertical_label1 <- textGrob(
+  "Percentage of documents (%)", 
+  rot = 90, 
+  gp = gpar(fontsize = 11, 
+            fontfamily = "Times"))
+# Wrap the grob as a patchwork element
+label_panel1 <- wrap_elements(full = vertical_label1)
+png("../Results/figure1.png", width = 2200, height = 2000, res = 300) # save in png format
+label_panel1 + (docu_type_plot + jurisdiction_plot)/categories + plot_layout(widths = c(0.02, 1))
+dev.off
+```
+
+# Plotting the different jurisdictional scales color coded by category
+
+```{r}
+# filtering the data
+juris_cat <- profile |> 
+  select(Paper_ID, Scale, Guideline_type, Objective_type)
+# setting levels for the jurisdictional scales 
+juris_cat <- juris_cat |> 
+  mutate(Scale = factor(Scale, levels = c("Region", "Country", "State/province",  "Location", "Other")))
+juris_cat$Scale <- juris_cat$Scale |> 
+  fct_recode(
+    "Region" = "Region",
+    "Country" = "Country",
+    "State/\nprovince" = "State/province",
+    "Site\nspecific" = "Location",
+    "Other" = "Other"
+  ) |> 
+  fct_relevel(
+    "Region",
+    "Country",
+    "State/\nprovince",
+    "Site\nspecific", 
+    "Other",
+  )
+# preapring the data <- setting levels for guidelines categories
+juris_cat1 <- juris_cat |> 
+  mutate(Guideline_type = factor(Guideline_type, levels = c("Ecological only", "Socioeconomic only", "Governance only", "Ecological and socioeconomic", "Ecological and governance", "All three")))
+# recoding categories names to look neater
+juris_cat1$Guideline_type <- recode(
+  juris_cat1$Guideline_type,
+  "Ecological only" = "Ecological only",
+  "Socioeconomic only" = "Socioeconomic only",
+  "Governance only" = "Governance only",
+  "Ecological and socioeconomic" = "Ecological & socioeconomic", 
+  "Ecological and governance" = "Ecological & governance",
+  "All three" = "All three")
+
+# plot for different jurisdictional scales color coded by guidelines categories
+juris_guide <- ggplot(juris_cat1, aes(x = Scale, fill = Guideline_type)) +
+  geom_bar() +
+  scale_fill_manual(
+    name = "Categories",
+    values = c("Ecological only" = "#7BAF6A", "Socioeconomic only" = "#F89C4F", "Governance only" = "#3B7CA3", "Ecological & socioeconomic" = "#FDBF2D", "Ecological & governance" ="#1DA1A1","All three" = "#C94D7B")) +
+  theme_minimal(base_family = "Times") + 
+  coord_cartesian(clip = "off") +
+  theme(
+    axis.title.y = element_blank(),
+    axis.ticks.y = element_line(color = "black"),              # y-axis major ticks in black
+    axis.ticks.x = element_line(color = "black"),              # x-axis major ticks (keep if needed)
+    axis.ticks.length = unit(4, "pt"),                         # make sure ticks are visible
+    panel.border = element_rect(colour = "black", fill=NA, linewidth=0.25)) + # adds a border around the plot 
+  labs(x = "Jurisdictional scale", 
+       color = "Categories") + 
+  annotate("text", x=-Inf, y=Inf, label="B - Design guidelines", hjust=0, vjust=-0.3, size=4, fontface="bold", family='serif')
+
+# doing the same for objectives categories <- in case I want to include this in the supplementary materials
+juris_cat2<- juris_cat |> 
+  mutate(Objective_type = factor(Objective_type, levels=c("Ecological only", "Socioeconomic only", "Governance only", "Ecological and socioeconomic", "Ecological and governance", "All three")))
+# recoding categories names to look neater
+juris_cat2$Objective_type <- recode(
+  juris_cat2$Objective_type,
+  "Ecological only" = "Ecological only",
+  "Socioeconomic only" = "Socioeconomic only",
+  "Governance only" = "Governance only",
+  "Ecological and socioeconomic" = "Ecological & socioeconomic", 
+  "Ecological and governance" = "Ecological & governance",
+  "All three" = "All three")
+
+# plot for different jurisdictional scales color coded by guidelines categories
+juris_obj <- ggplot(juris_cat2, aes(x = Scale, fill = Objective_type)) +
+  geom_bar(show.legend=FALSE) +
+  scale_fill_manual(
+    name = "Categories",
+    values = c("Ecological only" = "#7BAF6A", "Socioeconomic only" = "#F89C4F", "Governance only" = "#3B7CA3", "Ecological & socioeconomic" = "#FDBF2D", "Ecological & governance" ="#1DA1A1","All three" = "#C94D7B")) +
+  theme_minimal(base_family = "Times") + 
+  coord_cartesian(clip = "off") +
+  theme(
+    axis.title.y = element_blank(),
+    axis.ticks.y = element_line(color = "black"),              # y-axis major ticks in black
+    axis.ticks.x = element_line(color = "black"),              # x-axis major ticks (keep if needed)
+    axis.ticks.length = unit(4, "pt"),                         # make sure ticks are visible
+    panel.border = element_rect(colour = "black", fill=NA, linewidth=0.25)) +  # adds a border around the plot 
+  labs(x="") + 
+   annotate("text", x=-Inf, y=Inf, label="A - MPA objectives", hjust=0, vjust=-0.3, size=4, fontface="bold", family='serif')
+```
+
+## Combining the two plots above
+
+```{r}
+# Making a vertical annotation for the y axis 
+# Create vertical text grob (rotated 90 degrees)
+vertical_label2 <- textGrob(
+  "Number of documents", 
+  rot = 90, 
+  gp = gpar(fontsize = 11, 
+            fontfamily = "Times"))
+# Wrap the grob as a patchwork element
+label_panel2 <- wrap_elements(full = vertical_label2)
+# patchwork the plots 
+png("../Results/juriscat.png", width = 2200, height = 2000, res = 300) # save in png format
+label_panel2 + (juris_obj/juris_guide) +  plot_layout(guides = "collect") + plot_layout(widths = c(0.02, 1))
+dev.off()
+```
+
+# Plotting the distribution of MPA objectives
+
+```{r}
+# preparing the data for frequency plot 
+frequency <- profile |> 
+  select(Paper_ID, Objectives_number, Objective_type) |> 
+  mutate(Objectives_number = factor(Objectives_number))
+# plotting the frequency of MPA objectives
+frequency_plot <- 
+  ggplot(frequency, aes(x = Objectives_number)) +
+  geom_bar(fill="#FDBF2D") + 
+  theme_minimal(base_family = "Times") + 
+  coord_cartesian(clip = "off") +
+  theme(
+    axis.title.y = element_blank(),
+    axis.ticks = element_line(color = "black"), 
+    axis.ticks.length = unit(4, "pt"),              
+    panel.border = element_rect(colour = "black", fill=NA, linewidth=0.25)) +
+  labs(x = "Number of objectives per document", 
+       title = " ") + 
+  annotate("text", x=-Inf, y=Inf, label="B", hjust=1.5, vjust=0.9, size=6, fontface="bold", family='serif')
+frequency_plot
+```
+
+# Plotting the number of documents for each objective
+
+```{r}
+# preparing the data 
+objectives <- objectives |> 
+  mutate(Objective = factor(Objective, level = c(
+    "Biodiversity conservation", 
+    "Marine conservation", 
+    "Ecological processes",
+    "Climate change", 
+    "Sustainable use", 
+    "Livelihoods", 
+    "Food security",
+    "Cultural value", 
+    "Community-centred governance", 
+    "Legal structure")))
+objectives$Objective <- objectives$Objective |> 
+  fct_recode(
+    "Biodiversity\nconservation" = "Biodiversity conservation",
+    "Marine\nconservation" = "Marine conservation",
+    "Ecological\nprocesses" = "Ecological processes",
+    "Climate\nchange" = "Climate change", 
+    "Sustainable\nuse" = "Sustainable use",
+    "Livelihoods" = "Livelihoods",
+    "Food\nsecurity" = "Food security",
+    "Cultural\nvalue" = "Cultural value",
+    "Community-\ncentred\ngovernance" = "Community-centred governance",
+    "Legal\nstructures" = "Legal structure") |> 
+  fct_relevel(
+    "Biodiversity\nconservation", 
+    "Marine\nconservation", 
+    "Ecological\nprocesses",
+    "Climate\nchange", 
+    "Sustainable\nuse", 
+    "Livelihoods", 
+    "Food\nsecurity",
+    "Cultural\nvalue", 
+    "Community-\ncentred\ngovernance", 
+    "Legal\nstructures")
+# plot objectives 
+objectives_plot <-
+  ggplot(objectives, aes(x = Objective)) +
+  geom_bar(fill = "#FDBF2D") +
+  theme_minimal(base_family = "Times") +
+  coord_cartesian(clip = "off") +
+  theme(
+    axis.title.y = element_blank(),
+    axis.ticks = element_line(color = "black"),
+    axis.ticks.length = unit(4, "pt"),     
+    panel.border = element_rect(colour = "black", fill=NA, linewidth=0.25)) +
+  labs(x = "MPA objectives") +
+    annotate("text", x=-Inf, y=Inf, label="A", hjust=1.5, vjust=0.9, size=6, fontface="bold", family='serif')
+objectives_plot
+```
+
+## Combining MPA plots for MPA objectives
+
+```{r}
+# setting up a common y axis label 
+vertical_label4 <- textGrob(
+  "Number of documents", 
+  rot = 90, 
+  gp = gpar(fontsize = 11, 
+            fontfamily = "Times"))
+# Wrap the grob as a patchwork element
+label_panel4 <- wrap_elements(full = vertical_label4)
+# patchworking the plots
+png("../Results/Figure_S2.png", width = 2200, height = 2000, res = 300) # save in png format
+label_panel2 + (objectives_plot/frequency_plot) +  plot_layout(guides = "collect") + plot_layout(widths = c(0.02, 1))
+dev.off()
+```
