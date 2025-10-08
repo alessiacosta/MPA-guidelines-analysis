@@ -248,7 +248,8 @@ categories <- ggplot(fig1_long, aes(x = Category, y = Percentage, fill = Variabl
   guides(fill = guide_legend(title = NULL), 
          x=guide_axis(minor.ticks= TRUE)) +
   labs(x = "Categories", 
-       title = "  ") +
+       #y = "Percentage of documents (%)", # presentation figure
+       title = "  " ) +
   coord_cartesian(clip = "off") +
   #scale_y_continuous(breaks = seq(0, 100, by = 10), minor_breaks = NULL) +
   theme_minimal(base_family = "Times") +
@@ -263,7 +264,9 @@ categories <- ggplot(fig1_long, aes(x = Category, y = Percentage, fill = Variabl
         panel.border = element_rect(colour = "black", fill=NA, linewidth=0.25)) + # adds a border around the plot 
   annotate("text", x=-Inf, y=Inf, label="C", hjust=1.5, vjust=0.8, size=6, fontface="bold", family='serif') +
   annotate("text", x = 4.85, y = 2, label = "0", size = 3)
+#png("../Results/presentation.figure.png", width = 2600, height = 1600, res = 300)
 categories
+#dev.off()
 ```
 
 ## Combining plot from documents profile
