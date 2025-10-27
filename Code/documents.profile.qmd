@@ -484,3 +484,64 @@ png("../Results/Figure_S2.png", width = 2200, height = 2000, res = 300) # save i
 label_panel2 + (objectives_plot/frequency_plot) +  plot_layout(guides = "collect") + plot_layout(widths = c(0.02, 1))
 dev.off()
 ```
+
+# Plotting the geography of the document
+```{r}
+# setting levels 
+profile_geo <- profile |> 
+  mutate(Geography = factor(Geography, level = c(
+    "Africa", 
+    "Asia", 
+    "Australia",
+    "Europe", 
+    "North America", 
+    "South America", 
+    "Not Applicable/Other")))
+# wrapping text
+profile_geo$Geography <- profile_geo$Geography |> 
+  fct_recode(
+    "Africa" = "Africa",
+    "Asia" = "Asia",
+    "Australia" = "Australia",
+    "Europe" = "Europe", 
+    "North\nAmerica" = "North America",
+    "South\nAmerica" = "South America",
+    "Not applicable/\nother" = "Not Applicable/Other") |> 
+  fct_relevel(
+    "Africa", 
+    "Asia", 
+    "Australia",
+    "Europe", 
+    "North\nAmerica", 
+    "South\nAmerica", 
+    "Not applicable/\nother")
+# producing plot
+geography <- 
+  ggplot(profile_geo, aes(x = Geography)) +
+  geom_bar(fill="#4A97A0") + 
+  theme_minimal(base_family = "Times") + 
+  coord_cartesian(clip = "off") +
+  theme(
+    axis.ticks = element_line(color = "black"), 
+    axis.ticks.length = unit(4, "pt"),              
+    panel.border = element_rect(colour = "black", fill=NA, linewidth=0.25)) +
+  labs(x = "Documents geography", 
+       y = " Number of documents")
+# exporting the plot 
+png("../Results/geography.png", width = 2300, height = 1600, res = 300)
+geography
+dev.off()
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
