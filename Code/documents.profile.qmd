@@ -139,7 +139,8 @@ jurisdiction1 <- jurisdiction |>
     count = n(),
     percent = (n() /nrow(jurisdiction)) * 100)
 # bar plot 
-jurisdiction_plot <- ggplot(jurisdiction1, aes(x=Scale, y=percent)) +
+jurisdiction_plot <- 
+  ggplot(jurisdiction1, aes(x=Scale, y=percent)) +
   geom_bar(stat = "identity",  position = "dodge", fill="#7BAF6A") +
   theme_minimal(base_family = "Times") + 
   coord_cartesian(clip = "off") +
@@ -150,7 +151,7 @@ jurisdiction_plot <- ggplot(jurisdiction1, aes(x=Scale, y=percent)) +
     axis.ticks.x = element_line(color = "black"),              # x-axis major ticks (keep if needed)
     axis.ticks.length = unit(4, "pt"),                         # make sure ticks are visible
     panel.border = element_rect(colour = "black", fill=NA, linewidth=0.25)) + # adds a border around the plot 
-  labs(x = "../Results/Jurisdictional scale") + 
+  labs(x = "Jurisdictional scale") + 
   annotate("text", x=-Inf, y=Inf, label="B", hjust=1.5, vjust=0.8, size=6, fontface="bold", family='serif')
 jurisdiction_plot
 ```
@@ -242,7 +243,8 @@ fig1_long$Category <- fig1_long$Category |>
 #re-ordering variable to make sure that MPA objectives are plotted first
 fig1_long$Variable <- factor(fig1_long$Variable, levels = c("MPA objectives", "Design guidelines"))
 # Plotting % of records by category and variable
-categories <- ggplot(fig1_long, aes(x = Category, y = Percentage, fill = Variable)) +
+categories <- 
+  ggplot(fig1_long, aes(x = Category, y = Percentage, fill = Variable)) +
   geom_bar(stat = "identity", position = "dodge") +
   scale_fill_manual(values = c("MPA objectives" = "#FDBF2D", "Design guidelines" = "#3B7CA3")) +
   guides(fill = guide_legend(title = NULL), 
@@ -262,7 +264,7 @@ categories <- ggplot(fig1_long, aes(x = Category, y = Percentage, fill = Variabl
         axis.ticks.x = element_line(color = "black"),              # x-axis major ticks (keep if needed)
         axis.ticks.length = unit(4, "pt"),                         # make sure ticks are visible
         panel.border = element_rect(colour = "black", fill=NA, linewidth=0.25)) + # adds a border around the plot 
-  annotate("text", x=-Inf, y=Inf, label="C", hjust=1.5, vjust=0.8, size=6, fontface="bold", family='serif') +
+  annotate("text", x=-Inf, y=Inf, label="C", hjust=1.5, vjust=0.2, size=6, fontface="bold", family='serif') +
   annotate("text", x = 4.85, y = 2, label = "0", size = 3)
 #png("../Results/presentation.figure.png", width = 2600, height = 1600, res = 300)
 categories
@@ -485,14 +487,14 @@ label_panel2 + (objectives_plot/frequency_plot) +  plot_layout(guides = "collect
 dev.off()
 ```
 
-# Plotting the geography of the document
+# Plotting the geography of the documents
 ```{r}
 # setting levels 
 profile_geo <- profile |> 
   mutate(Geography = factor(Geography, level = c(
     "Africa", 
     "Asia", 
-    "Australia",
+    "Australia/Oceania",
     "Europe", 
     "North America", 
     "South America", 
@@ -502,7 +504,7 @@ profile_geo$Geography <- profile_geo$Geography |>
   fct_recode(
     "Africa" = "Africa",
     "Asia" = "Asia",
-    "Australia" = "Australia",
+    "Australia/\nOceania" = "Australia/Oceania",
     "Europe" = "Europe", 
     "North\nAmerica" = "North America",
     "South\nAmerica" = "South America",
@@ -510,7 +512,7 @@ profile_geo$Geography <- profile_geo$Geography |>
   fct_relevel(
     "Africa", 
     "Asia", 
-    "Australia",
+    "Australia/\nOceania",
     "Europe", 
     "North\nAmerica", 
     "South\nAmerica", 

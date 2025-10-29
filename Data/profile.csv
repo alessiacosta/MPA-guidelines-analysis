@@ -1,11 +1,11 @@
 ﻿Paper_ID,Year_published,Objective_type,Guideline_type,From_paper,Scale,Document_type,Objectives_number,Geography
-1,2023,Ecological and socioeconomic ,Ecological and socioeconomic,Western Australia,State/province,Government report,2,Australia
+1,2023,Ecological and socioeconomic ,Ecological and socioeconomic,Western Australia,State/province,Government report,2,Australia/Oceania
 2,2012,Ecological and socioeconomic ,Ecological only,Coral Triangle,Region,NGO report,3,Asia
 3,2021,Ecological and socioeconomic ,All three,Mexico,Country,Journal article,2,North America
-4,2013,Ecological and socioeconomic ,Ecological and socioeconomic,South Austalia,State/province,Journal article,5,Australia
+4,2013,Ecological and socioeconomic ,Ecological and socioeconomic,South Austalia,State/province,Journal article,5,Australia/Oceania
 5,2015,Socioeconomic only,Socioeconomic only,Raja Ampat MPA Network,Location,Journal article,2,Asia
-6,2008,Ecological and socioeconomic ,Ecological and socioeconomic,South Austalia,State/province,Government report,5,Australia
-7,2009,Ecological only,Ecological and socioeconomic,"Kimbe Bay, Papua New Guinea",Location,Journal article,1,Australia
+6,2008,Ecological and socioeconomic ,Ecological and socioeconomic,South Austalia,State/province,Government report,5,Australia/Oceania
+7,2009,Ecological only,Ecological and socioeconomic,"Kimbe Bay, Papua New Guinea",Location,Journal article,1,Australia/Oceania
 8,2003,Ecological and socioeconomic ,Ecological only,"Channel Islands, California",Location,Journal article,4,North America
 9,2003,Socioeconomic only,Ecological only,General,Other,Journal article,1,Not Applicable/Other
 10,2014,Ecological only,Ecological only,Coral Triangle,Region,Journal article,3,Asia
@@ -13,11 +13,11 @@
 12,2009,Ecological only,Ecological only,Mexico,Country,Journal article,1,North America
 13,2009,Ecological only,Ecological only,Review,Other,Journal article,1,Not Applicable/Other
 14,2013,Ecological only,Ecological only,California,State/province,Journal article,3,North America
-15,2005,Ecological and socioeconomic ,Ecological only,"Great Barrier Reef, Australia",Location,Journal article,3,Australia
+15,2005,Ecological and socioeconomic ,Ecological only,"Great Barrier Reef, Australia",Location,Journal article,3,Australia/Oceania
 16,2013,Ecological only,Ecological and socioeconomic,Clarion-Clipperton fracture zone,Location,Journal article,1,Not Applicable/Other
 17,2008,Ecological only,Ecological only,General,Other,NGO report,1,Not Applicable/Other
 18,2018,Ecological only,Ecological only,"Gulf of California, Mexico",State/province,Journal article,3,North America
-19,2009,Ecological and socioeconomic ,Ecological only,"Great Barrier Reef, Australia",Location,Journal article,3,Australia
+19,2009,Ecological and socioeconomic ,Ecological only,"Great Barrier Reef, Australia",Location,Journal article,3,Australia/Oceania
 20,1997,Ecological only,Ecological only,General,Other,Journal article,1,Not Applicable/Other
 21,2016,Ecological only,Ecological only,General,Other,Journal article,1,Not Applicable/Other
 22,2022,Socioeconomic only,Socioeconomic only,Indonesia,Country,Journal article,1,Not Applicable/Other
@@ -25,7 +25,7 @@
 24,2022,Ecological and socioeconomic ,Ecological and socioeconomic,"Algarve, south Portugal",Location,Journal article,3,Europe
 25,2021,Ecological only,Ecological only,"Deep-sea azooxanthellate coral formation near Corales del Rosario y San Bernardo National Park, Colombia",Location,Journal article,1,South America
 26,2020,Ecological only,Ecological only,Mexican Caribbean,State/province,Journal article,1,North America
-27,2009,Ecological only,Ecological only,Australia's Commonwealth waters,Country,Government report,3,Australia
+27,2009,Ecological only,Ecological only,Australia's Commonwealth waters,Country,Government report,3,Australia/Oceania
 28,2000,Socioeconomic only,Ecological and socioeconomic,"Exuma Cays Land and Sea Park, Bahamas",Location,Journal article,1,North America
 29,2013,Ecological only,Ecological only,Mediterranean Sea,Region,NGO report,1,Not Applicable/Other
 30,2009,Ecological only,Ecological only,"Bohol (Philippines), GBR (Australia), Kimbe Bay (Papua New Guinea)",Location,Journal article,1,Not Applicable/Other
@@ -34,13 +34,13 @@
 33,2003,Ecological only,Ecological only,Review,Other,Journal article,1,Not Applicable/Other
 34,2023,Ecological and socioeconomic ,Ecological only,"Colombia, Nicaragua and Jamaica",Region,Journal article,2,South America
 35,2016,Ecological only,Ecological only,Theorethical,Other,Journal article,1,Not Applicable/Other
-36,2019,Ecological only,Ecological only,New Zealand,Country,Government report,1,Australia
-37,2015,Ecological only,Ecological and governance,New Zealand,Country,Government report,1,Australia
+36,2019,Ecological only,Ecological only,New Zealand,Country,Government report,1,Australia/Oceania
+37,2015,Ecological only,Ecological and governance,New Zealand,Country,Government report,1,Australia/Oceania
 38,2019,All three,All three,Indonesia,Country,NGO report,6,Asia
 39,2012,Ecological only,Ecological only,General,Other,Government report,1,Not Applicable/Other
-40,2013,Ecological only,Ecological only,New Zealand,Country,Government report,1,Australia
-41,2006,Ecological only,Ecological only,Australia's Commonwealth waters,Country,Government report,1,Australia
-42,2014,Ecological only,Ecological only,New Zealand,Country,Journal article,1,Australia
+40,2013,Ecological only,Ecological only,New Zealand,Country,Government report,1,Australia/Oceania
+41,2006,Ecological only,Ecological only,Australia's Commonwealth waters,Country,Government report,1,Australia/Oceania
+42,2014,Ecological only,Ecological only,New Zealand,Country,Journal article,1,Australia/Oceania
 43,2013,Ecological only,Ecological and governance,Review of few MPA already established,Other,Journal article,1,Not Applicable/Other
 44,2007,Ecological only,Ecological only,North East Atlantic ,Region,NGO report,2,North America
 45,2010,All three,Governance only,Review,Other,Journal article,5,Not Applicable/Other
@@ -51,7 +51,7 @@
 50,2007,Ecological and socioeconomic ,Ecological and governance,"Case studies, Galapagos & San Andreas",Other,Journal article,2,Not Applicable/Other
 51,2003,Ecological and socioeconomic ,Ecological only,Criteria framework,Other,Journal article,4,Not Applicable/Other
 52,1999,Ecological and socioeconomic ,Ecological and socioeconomic,"Masoala National Park, Madagascar",Location,Journal article,2,Africa
-53,2007,Ecological and socioeconomic ,Ecological and socioeconomic,"Kimbe Bay, Papua New Guinea",Location,NGO report,2,Australia
+53,2007,Ecological and socioeconomic ,Ecological and socioeconomic,"Kimbe Bay, Papua New Guinea",Location,NGO report,2,Australia/Oceania
 54,1984,Ecological only,Ecological only,Coral Reefs,Other,Journal article,1,Not Applicable/Other
 55,2006,Ecological only,Ecological and governance,General,Other,Journal article,1,Not Applicable/Other
 56,2015,Ecological only,Ecological and socioeconomic,Canada's Northern Shelf Bioregion,State/province,Other report,1,North America
@@ -60,4 +60,4 @@
 59,2018,Ecological only,Ecological and socioeconomic,General,Other,NGO report,1,Not Applicable/Other
 60,2017,Ecological and socioeconomic ,Ecological only,Mesoamerica,Region,NGO report,3,North America
 61,2019,Ecological only,Ecological only,MPAs for sharks and rays,Other,NGO report,1,Not Applicable/Other
-62,2009,Ecological only,Ecological and governance,Australia,Country,Other report,1,Australia
+62,2009,Ecological only,Ecological and governance,Australia,Country,Other report,1,Australia/Oceania
