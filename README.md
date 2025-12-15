@@ -1,4 +1,4 @@
-# Code to accompany the paper "Synthesising ecological, socioeconomic, and governance guidelines for designing Marine Protected Areas"
+# Code supporting the paper "Synthesising ecological, socioeconomic, and governance guidelines for designing Marine Protected Areas"
 
 ## The code
 
